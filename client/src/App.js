@@ -50,19 +50,18 @@ function App() {
       path="/signup"
       element={<Signup />}
     />
-     <Route
-    path="/profile/:username?"
-    element={<Profile />}
-  />
-  <Route
-    path="/thought/:id"
-    element={<SingleThought />}
-  />
-
-    <Route
-      path="*"
-      element={<NoMatch />}
-    />
+     <Route 
+      path="/profile" 
+      element={<Profile />} 
+      />
+      <Route 
+      path="/thought/:id" 
+      element={<SingleThought />} 
+      />
+      <Route 
+      path="*" 
+      element={<NoMatch />} 
+      />
   </Routes>
 </div>
           <Footer />

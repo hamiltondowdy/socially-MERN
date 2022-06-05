@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_THOUGHT } from '../../utils/mutations';
 import { QUERY_THOUGHTS, QUERY_ME } from '../../utils/queries';
+import "./style.css";
 
 const ThoughtForm = () => {
 
@@ -57,26 +58,36 @@ const handleChange = event => {
   };
 
   return (
-    <div>
-      <p className={`m-0 ${characterCount === 280 || error ? 'text-error' : ''}`}>
-  Character Count: {characterCount}/280
-  {error && <span className="ml-2">Something went wrong...</span>}
-</p>
+      <div>
+           
+        <div id='tfhead'>
+        <h3>Socialize</h3>
+        </div>
+        <div id='former'>
 <form
-  className="flex-row justify-center justify-space-between-md align-stretch"
+  className="flex-row justify-content-space-evenly-md align-stretch"
   onSubmit={handleFormSubmit}
 >
+
       <textarea
   placeholder=">"
   value={thoughtText}
-  className="form-input col-12 col-md-9"
+  className="form-input col-6 col-md-5"
   onChange={handleChange}
 ></textarea>
-        <button className="btn col-12 col-md-3" type="submit">
+        <button className="btn col-6 col-md-1" id='t-b' type="submit">
           Submit
         </button>
       </form>
     </div>
+    <div className='flex-row'>
+    <p className={`m-0 ${characterCount === 280 || error ? 'text-error' : ''}`} id='chars'>
+  {characterCount} (max 280) |
+  {error && <span className="ml-1">Something went wrong...</span>}
+</p>
+    </div>
+      </div>
+    
   );
 };
 

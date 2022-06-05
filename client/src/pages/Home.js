@@ -31,7 +31,7 @@ const { data: userData } = useQuery(QUERY_ME_BASIC);
   {loading ? (
     <div>hang on lol</div>
   ) : (
-    <ThoughtList thoughts={thoughts} title="Tofu" />
+    <ThoughtList thoughts={thoughts} title="" />
   )}
   {loggedIn && userData ? (
   <div className="col-12 col-lg-3 mb-3">
