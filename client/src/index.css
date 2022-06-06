@@ -4,7 +4,7 @@
   --tertiary: #090000;
   --quatrinary: #ffffff;
   --light: #ffffff;
-  --dark: #453e6a;
+  --dark: #504f68;
   --error: rgb(228, 46, 1);
   --border-radius: 0.3rem;
   --spacing-one: calc(1rem * 0.25);
@@ -330,6 +330,7 @@ nav a:hover {
 
 .mb-3 {
   margin-bottom: var(--spacing-three);
+
 }
 
 .mb-4 {

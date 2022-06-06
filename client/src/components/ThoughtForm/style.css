@@ -4,6 +4,7 @@
     align-items: center;
     text-align: center;
     padding: 2%;
+    border-top: 2px solid var(--dark);
   }
 
 
@@ -12,13 +13,13 @@
     text-align: baseline !important;
 }
 
-#t-b {
-    background-color: rgb(60, 54, 92);
-    color: aliceblue;
-    border-radius: 3px;
-    
-}
+
 
 #former {
-    margin: 1%
+    margin: 1%;
+
+}
+
+#bullseye {
+    height: 25px;
 }

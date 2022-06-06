@@ -22,5 +22,8 @@
   "description": "",
   "devDependencies": {
     "concurrently": "^7.2.1"
+  },
+  "dependencies": {
+    "babel-plugin-macros": "^3.1.0"
   }
 }

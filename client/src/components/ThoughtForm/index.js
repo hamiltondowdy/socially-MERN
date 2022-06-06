@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+
+
 import { useMutation } from '@apollo/client';
 import { ADD_THOUGHT } from '../../utils/mutations';
 import { QUERY_THOUGHTS, QUERY_ME } from '../../utils/queries';
@@ -61,7 +63,7 @@ const handleChange = event => {
       <div>
            
         <div id='tfhead'>
-        <h3>Socialize</h3>
+        <h3></h3>
         </div>
         <div id='former'>
 <form
@@ -76,13 +78,13 @@ const handleChange = event => {
   onChange={handleChange}
 ></textarea>
         <button className="btn col-6 col-md-1" id='t-b' type="submit">
-          Submit
+          Post
         </button>
       </form>
     </div>
     <div className='flex-row'>
     <p className={`m-0 ${characterCount === 280 || error ? 'text-error' : ''}`} id='chars'>
-  {characterCount} (max 280) |
+     {characterCount}    (max 280) 
   {error && <span className="ml-1">Something went wrong...</span>}
 </p>
     </div>
