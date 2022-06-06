@@ -51,7 +51,7 @@ function FileUpload() {
     try {
       // add thought to database
       await fileUpload({
-        variables: { files }
+        variables: { blob }
       });
   
 
