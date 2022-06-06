@@ -6,6 +6,7 @@ import ReactionList from '../components/ReactionList';
 import ReactionForm from '../components/ReactionForm';
 import Auth from '../utils/auth';
 
+
 const SingleThought = props => {
 
   const { id: thoughtId } = useParams();
@@ -23,7 +24,7 @@ if (loading) {
 
   return (
     <div>
-  <div className="card mb-3">
+  <div className="card mb-3" id='crd'>
     <p className="card-header">
       <span style={{ fontWeight: 700 }} className="text-light">
         {thought.username}

@@ -68,6 +68,7 @@ if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
     {user.username}
   </h2>
   <ProfPic />
+
     <FriendList
       username={user.username}
       friendCount={user.friendCount}
