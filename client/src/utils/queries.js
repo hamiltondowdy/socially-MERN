@@ -100,3 +100,13 @@ export const QUERY_ME_BASIC = gql`
     }
   }
 `;
+
+export const QUERY_FILE = gql`
+  query file($id: ID!) {
+    file(_id: $id) {
+      filename
+      mimetype
+      encoding
+    }
+  }
+`;

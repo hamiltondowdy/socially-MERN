@@ -67,3 +67,14 @@ export const ADD_REACTION = gql`
     }
   }
 `;
+
+
+export const FILE_UPLOAD = gql`
+  mutation fileUpload($filename: String!) {
+    fileUpload(filename: $filename) {
+      filename
+      mimetype
+      encoding
+    }
+  }
+`;
