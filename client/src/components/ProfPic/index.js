@@ -1,5 +1,5 @@
 import React from 'react';
-import FileInput from '../FileInput';
+import FileUpload from '../FileUpload';
 
 import './style.css';
 
@@ -9,7 +9,7 @@ const ProfPic = () => {
   return (
     <div id='prof'>
     
-        <FileInput />
+        <FileUpload />
       </div>
     
   );

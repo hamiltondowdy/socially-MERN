@@ -8,7 +8,7 @@ import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_USER, QUERY_ME } from '../utils/queries';
 import { Navigate, useParams } from 'react-router-dom';
 import ThoughtForm from '../components/ThoughtForm';
-import ProfPic from '../components/ProfPic';;
+import ProfPic from '../components/ProfPic';
 
 const Profile = () => {
   const { username: userParam } = useParams();
