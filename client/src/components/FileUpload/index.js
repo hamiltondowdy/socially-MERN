@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import ReactDOM from "react-dom";
+import { useMutation } from '@apollo/client';
+
 // Import React FilePond
 import { FilePond, File, registerPlugin } from "react-filepond";
-
+import { FILE_UPLOAD } from '../../utils/mutations';
+import { QUERY_FILE, QUERY_ME } from '../../utils/queries';
 // Import FilePond styles
 import "filepond/dist/filepond.min.css";
 
@@ -17,12 +19,47 @@ import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
 registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
 
 function FileUpload() {
-  const [files] = useState([
-    {
-      source: "https://picsum.photos/200/300",
-      options: { type: "local" }
+  const [files, setFiles] = useState([]);
+
+  const [fileUpload, { error }] = useMutation(FILE_UPLOAD, {
+    update(cache, { data: { fileUpload } }) {
+  
+        // could potentially not exist yet, so wrap in a try/catch
+      try {
+        // update me array's cache
+        const { me } = cache.readQuery({ query: QUERY_ME });
+        cache.writeQuery({
+          query: QUERY_ME,
+          data: { me: { ...me, files: [...me.files, fileUpload] } },
+        });
+      } catch (e) {
+        console.warn("First thought insertion by user!")
+      }
+  
+      // update thought array's cache
+      const { files } = cache.readQuery({ query: QUERY_FILE });
+      cache.writeQuery({
+        query: QUERY_FILE,
+        data: { files: [fileUpload, ...files] },
+      });
     }
-  ]);
+  });
+
+  const handleFileUpload = async event => {
+    event.preventDefault();
+  
+    try {
+      // add thought to database
+      await fileUpload({
+        variables: { files }
+      });
+  
+
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
 
   return (
     <div className="App">

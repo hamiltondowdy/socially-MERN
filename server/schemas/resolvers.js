@@ -1,6 +1,7 @@
-const { User, Thought } = require('../models');
-const { AuthenticationError } = require('apollo-server-express');
+const { User, Thought, File } = require('../models');
+const { AuthenticationError, GraphQLUpload } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
+
 
 
 const resolvers = {
@@ -35,7 +36,8 @@ const resolvers = {
     },
     thought: async (parent, { _id }) => {
       return Thought.findOne({ _id });
-    }
+    },
+    files: (parent, args) => {},
 },
   Mutation: {
     addUser: async (parent, args) => {
@@ -100,9 +102,29 @@ const resolvers = {
         }
       
         throw new AuthenticationError('You need to be logged in!');
-      }
+      },
+      fileUpload: async (_, {file}) => {
+        const {createReadStream, filename, mimetype, encoding} = await file;
+        const stream = createReadStream();
+        const fileType = await FileType.fromStream(stream)
+
+        if (context.user) {
+          const file = await File.create({ ...args, username: context.user.username });
+      
+          await User.findByIdAndUpdate(
+            { _id: context.user._id },
+            { $push: { files: file._id } },
+            { new: true }
+          );
+      
+          return file;
+        }
+      
+        throw new AuthenticationError('You need to be logged in!');
+      },
+
   }
-};
+}
 
 
 module.exports = resolvers;
