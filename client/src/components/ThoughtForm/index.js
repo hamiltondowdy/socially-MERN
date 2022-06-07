@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_THOUGHT } from '../../utils/mutations';
 import { QUERY_THOUGHTS, QUERY_ME } from '../../utils/queries';
+import "./style.css";
+
 
 const ThoughtForm = () => {
   const [thoughtText, setText] = useState('');
@@ -58,26 +60,27 @@ const ThoughtForm = () => {
   };
 
   return (
-    <div>
-      <p
-        className={`m-0 ${characterCount === 280 || error ? 'text-error' : ''}`}
-      >
-        Character Count: {characterCount}/280
-        {error && <span className="ml-2">Something went wrong...</span>}
-      </p>
+    <div id='forma'>
       <form
-        className="flex-row justify-center justify-space-between-md align-stretch"
+        className="flex-row justify-center justify-space-between-md align-left"
         onSubmit={handleFormSubmit}
       >
         <textarea
-          placeholder="Here's a new thought..."
+          placeholder="Post..."
           value={thoughtText}
+          id='ta'
           className="form-input col-12 col-md-9"
           onChange={handleChange}
         ></textarea>
-        <button className="btn col-12 col-md-3" type="submit">
+        <button className="btn col-12 col-md-3" id='bton' type="submit">
           Submit
         </button>
+        <p
+        className={`m-0 ${characterCount === 280 || error ? 'text-error' : ''}`}
+      >
+        {characterCount}/280
+        {error && <span className="ml-2">Something went wrong...</span>}
+      </p>
       </form>
     </div>
   );

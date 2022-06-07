@@ -46,13 +46,14 @@ const ReactionForm = ({ thoughtId }) => {
         onSubmit={handleFormSubmit}
       >
         <textarea
-          placeholder="Leave a reaction to this thought..."
+          placeholder="Comment..."
           value={reactionBody}
+          id='ta'
           className="form-input col-12 col-md-9"
           onChange={handleChange}
         ></textarea>
 
-        <button className="btn col-12 col-md-3" type="submit">
+        <button className="btn col-12 col-md-3" id='bton' type="submit">
           Submit
         </button>
       </form>
