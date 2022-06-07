@@ -20,9 +20,6 @@ const userSchema = new Schema(
       required: true,
       minlength: 5
     },
-    profileImg: {
-      type: String
-    },
     thoughts: [
       {
         type: Schema.Types.ObjectId,

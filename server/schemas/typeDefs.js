@@ -1,7 +1,6 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
-  scalar FileUpload
 
   type User {
     _id: ID
@@ -28,19 +27,12 @@ const typeDefs = gql`
     username: String
   }
 
-  type File {
-    filename: String!
-    mimetype: String!
-    encoding: String!
-  }
-
   type Query {
     me: User
     users: [User]
     user(username: String!): User
     thoughts(username: String): [Thought]
     thought(_id: ID!): Thought
-    files: [File]
   }
   type Auth {
   token: ID!
@@ -52,7 +44,6 @@ const typeDefs = gql`
     addThought(thoughtText: String!): Thought
     addReaction(thoughtId: ID!, reactionBody: String!): Thought
     addFriend(friendId: ID!): User
-    fileUpload(file: FileUpload!): File!
   }
 `;
 
