@@ -5,8 +5,10 @@ const Schema = mongoose.Schema;
 const FileSchema = new Schema(
     {
         fileUpload: {
-          type: String,
-          filename: String
+          type: Buffer
+        },
+        fileUploadType: {
+          type: String
         }
       }
     );
