@@ -1,24 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
-
+import Form from "../components/Form";
 import ThoughtForm from '../components/ThoughtForm';
 import ThoughtList from '../components/ThoughtList';
 import FriendList from '../components/FriendList';
-
+import ProfilePicture from '../components/ProfilePicture';
 import { useQuery, useMutation } from '@apollo/client';
-import { QUERY_USER, QUERY_ME } from '../utils/queries';
-import { ADD_FRIEND } from '../utils/mutations';
+import { QUERY_USER, QUERY_ME, QUERY_PHOTO } from '../utils/queries';
+import { ADD_FRIEND, ADD_REACTION, UPLOAD_PHOTO } from '../utils/mutations';
 import Auth from '../utils/auth';
 
 const Profile = (props) => {
   const { username: userParam } = useParams();
-
   const [addFriend] = useMutation(ADD_FRIEND);
   const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
     variables: { username: userParam },
   });
+  const [uploadedFileUrl, setUploadedFileUrl] = useState({
+    uploadedFiles: null
+  });
+  console.log(uploadedFileUrl);
+  //Add a state to track the data entered in to our form.
+  const [formData, setFormData] = useState({
+    name: "",
+    description: ""
+  });
+  
 
   const user = data?.me || data?.user || {};
+
+  const [change, setChange] = useState(true);
+
 
   // navigate to personal profile page if username is yours
   if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
@@ -38,20 +50,32 @@ const Profile = (props) => {
     );
   }
 
-  const handleClick = async () => {
-    try {
-      await addFriend({
-        variables: { id: user._id },
-      });
-    } catch (e) {
-      console.error(e);
-    }
-  };
+
+  
+
+
+
+ const handleClick = async () => {
+  try {
+    await addFriend({
+      variables: { id: user._id },
+    });
+  } catch (e) {
+    console.error(e);
+  }
+}
 
   return (
     <div>
+      <div>
       <div className="flex-row mb-3">
-        <h2 className="bg-dark text-secondary p-3 display-inline-block">
+      <ProfilePicture
+          change={change}
+          setChange={setChange}
+          formData={formData}
+          uploadedFileUrl={uploadedFileUrl}
+        />
+        <h2 className="bg-dark text-secondary p-5 display-inline-block">
            { `${user.username}` } 
         </h2>
 
@@ -77,9 +101,27 @@ const Profile = (props) => {
             friends={user.friends}
           />
         </div>
+
       </div>
       <div className="mb-3">{!userParam && <ThoughtForm />}</div>
-    </div>
+
+            </div>
+           
+            <div>
+
+<div className="container" id='formy'>
+      
+        <Form
+          formData={formData}
+          setFormData={setFormData}
+          setChange={setChange}
+          setUploadedFileUrl={setUploadedFileUrl}
+          uploadedFileUrl={uploadedFileUrl}
+        />
+      </div>
+       </div>
+       </div>
+ 
   );
 };
 

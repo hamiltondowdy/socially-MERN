@@ -80,3 +80,11 @@ export const REMOVE_FRIEND = gql`
     }
   }
 `;
+
+export const UPLOAD_PHOTO = gql`
+  mutation uploadPhoto($photo: String!) {
+    uploadPhoto(photo: $photo ) {
+      photo
+    }
+  }
+`;

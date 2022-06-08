@@ -98,3 +98,12 @@ export const QUERY_ME_BASIC = gql`
     }
   }
 `;
+
+export const QUERY_PHOTO = gql`
+  query photo($photo: String!) {
+    photo(result: $url) {
+      photo
+      }
+    }
+`;
+

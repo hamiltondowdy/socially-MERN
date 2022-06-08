@@ -19,6 +19,10 @@ const typeDefs = gql`
     reactions: [Reaction]
   }
 
+  type Photo {
+    photo: String
+  }
+
   type Reaction {
     _id: ID
     reactionBody: String
@@ -34,6 +38,7 @@ const typeDefs = gql`
   type Query {
     me: User
     users: [User]
+    photo: [Photo]
     user(username: String!): User
     thoughts(username: String): [Thought]
     thought(_id: ID!): Thought
@@ -45,6 +50,7 @@ const typeDefs = gql`
     addThought(thoughtText: String!): Thought
     addReaction(thoughtId: ID!, reactionBody: String!): Thought
     addFriend(friendId: ID!): User
+    uploadPhoto(photo: String!): String
   }
 `;
 
