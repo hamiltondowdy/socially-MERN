@@ -72,7 +72,6 @@ const CLOUDINARY_UPLOAD_PRESET = "md44gre5";
           maxFileSize={10000000}
           multiple="false"
           accept="image/*"
-          minHeight={100}
           onDrop={console.log}
           dropzoneText="Drag or Click to Add"
           type="file"

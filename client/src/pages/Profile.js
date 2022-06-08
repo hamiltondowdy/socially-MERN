@@ -75,6 +75,7 @@ const Profile = (props) => {
           formData={formData}
           uploadedFileUrl={uploadedFileUrl}
         />
+        
         <h2 className="bg-dark text-secondary p-5 display-inline-block">
            { `${user.username}` } 
         </h2>
@@ -103,7 +104,7 @@ const Profile = (props) => {
         </div>
 
       </div>
-      <div className="mb-3">{!userParam && <ThoughtForm />}</div>
+
 
             </div>
            
