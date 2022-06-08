@@ -4,6 +4,7 @@ import Form from "../components/Form";
 import ThoughtForm from '../components/ThoughtForm';
 import ThoughtList from '../components/ThoughtList';
 import FriendList from '../components/FriendList';
+import Pic from '../components/Pic';
 import ProfilePicture from '../components/ProfilePicture';
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_USER, QUERY_ME, QUERY_PHOTO } from '../utils/queries';
@@ -20,14 +21,18 @@ const Profile = (props) => {
     uploadedFiles: null
   });
   console.log(uploadedFileUrl);
+
+  
   //Add a state to track the data entered in to our form.
   const [formData, setFormData] = useState({
     name: "",
     description: ""
   });
   
+const [addPhoto] = useMutation(UPLOAD_PHOTO);
 
   const user = data?.me || data?.user || {};
+
 
   const [change, setChange] = useState(true);
 
@@ -51,7 +56,15 @@ const Profile = (props) => {
   }
 
 
-  
+ const handlePic = async () => {
+   try {
+     await addPhoto({
+       variables: { photo: user.File }
+     });
+    } catch (e) {
+      console.error(e);
+   }
+ } 
 
 
 
@@ -66,8 +79,10 @@ const Profile = (props) => {
 }
 
   return (
+
+ 
     <div>
-      <div>
+      <div key={user.id}>{user.photo}
       <div className="flex-row mb-3">
       <ProfilePicture
           change={change}
@@ -118,10 +133,12 @@ const Profile = (props) => {
           setChange={setChange}
           setUploadedFileUrl={setUploadedFileUrl}
           uploadedFileUrl={uploadedFileUrl}
+          handlePic={handlePic}
         />
       </div>
+      
        </div>
-       </div>
+  </div>
  
   );
 };

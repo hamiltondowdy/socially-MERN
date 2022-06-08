@@ -31,6 +31,12 @@ const userSchema = new Schema(
         type: Schema.Types.ObjectId,
         ref: 'User'
       }
+    ],
+    picture: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Picture'
+      }
     ]
   },
   {
