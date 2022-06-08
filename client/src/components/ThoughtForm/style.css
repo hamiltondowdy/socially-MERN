@@ -59,10 +59,28 @@
     border-radius: 2px;
 }
 
+#pic {
+  width: 200px;
+  background-image: url("../../prof.png");
+  background-size: contain;
+  height: 200px;
+  align-items: center;
+}
 
+#formy {
 
+  flex-wrap: wrap;
+  justify-content: center;
+}
 
+#formy h2 {
+  font-size: 20px;
+  text-align: center;
+}
 
+#formuler {
+  min-height: 100px !important;
+}
 
 
 
